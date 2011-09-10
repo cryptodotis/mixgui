@@ -1,0 +1,1 @@
+user_pref("extensions.sample.username", "Joe");

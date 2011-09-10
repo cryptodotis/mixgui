@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<overlay id="MixMessageWin" 
+xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="application/x-javascript"
+     src="chrome://gui/content/messageWindowMixOverlay.js" />
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixUtils.js" />
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixWrapper.js" />
+
+<toolbar id="mail-bar2">
+
+  <toolbarbutton id="btnMixSend" 		  
+		 label="Mixminion"
+		 insertafter="button-save"
+		 toolbarmode="small"
+		 image="chrome://gui/content/pemar_send.png"
+		 tooltiptext="Send anonimously this message over Mixminion network"
+		 type="menu-button"
+		 class="toolbarbutton-1">
+    <menupopup>
+      <menuitem label="Decode reply"
+		id="miDecode"
+		disabled="false" 
+		oncommand="btnMixDecodeHandler(); event.stopPropagation();"/>
+      <menuitem label="Reply"
+		id="miReply"
+		disabled="false" 
+		oncommand="btnMixReplyHandler(); event.stopPropagation();"/>
+      <menuitem label="Inspect SURB"
+		id="miInspect"
+		oncommand="btnInspectHandler(); "
+		disabled="false" />
+      <menuitem label="Save SURB on file"
+		id="miSaveSurb"
+		disabled="true" />
+    </menupopup>
+
+  </toolbarbutton>
+
+  <!--toolbarbutton id="btnMixDecode"
+		 label="MixDecode"
+                 oncommand="btnMixDecodeHandler();"
+		 insertafter="button-stop"
+		 toolbarmode="small"
+		 image="chrome://gui/content/pemar_decode.png"
+		 tooltiptext="Decode Mixminion reply"
+		 class="toolbarbutton-1"/-->
+  <!--toolbarbutton id="btnMixReply"
+		 label="MixReply"
+                 oncommand="btnMixReplyHandler();"
+		 insertafter="button-stop"
+		 toolbarmode="small"
+		 image="chrome://gui/content/pemar_decode.png"
+		 tooltiptext="Reply using attached SURB"
+		 class="toolbarbutton-1"/-->
+</toolbar>
+
+</overlay>

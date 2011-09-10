@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+
+<overlay id="mixguiMessenger" 
+xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<script type="application/x-javascript"
+     src="chrome://gui/content/messengerOverlay.js" />
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixUtils.js" />
+
+<!-- statusbar id="status-bar">
+  <statusbarpanel id="my-panel" label="Hello, World"/>
+ </statusbar-->
+
+<!-- Overlay for menu bar.-->
+<menubar id="mail-menubar">
+  <!-- A main menu-->
+  <menu id="mixguiPrefs"
+	label="MixGui"
+	insertafter="menu_close">
+    <menupopup id="mail_MuSubMEnuPopup">
+      <menuitem id="miPrefs"
+                label="Preferences"
+                oncommand="setMixPrefs();" />
+      <menuitem id="miMixServers"
+                label="Servers"
+                oncommand="showServers();" />
+      <menuitem id="miMixQueue"
+                label="Queue"
+                oncommand="showQueue();" />
+      <menu id="oSurbMenu"
+	    label="Surbs">
+	<menupopup id="oSurbPopup">
+	<menuitem id="miCreateSurb"
+                  label="Create"
+                  oncommand="showCreateSurb();" />
+	<menuitem id="miInspectSurb"
+                  label="Inspect"
+                  oncommand="showInspectSurb();" />
+	</menupopup>
+      </menu>
+      <menuitem id="miMixLogs"
+                label="Logs"
+                oncommand="showLogs();" />
+      <menuitem id="miMixHelp"
+                label="Help"
+                oncommand="showHelp();" />
+    </menupopup>
+  </menu>
+
+</menubar>
+
+<!-- Overlay for File menu.-->
+<!--menupopup id="menu_FilePopup">
+  <menuitem id="menu_MyOwnMenuOnFile"
+            label="Open my own window!"
+            insertafter="menu_close"
+            oncommand="alert('MyMenu');"/>
+  <menuseparator insertafter="menu_close" />
+  
+  <menu id="menu_MySubMenu"
+	label="This is my submenu"
+	insertafter="menu_close">
+    <menupopup id="menu_MuSubMEnuPopup">
+      <menuitem id="menu_FirstSubmenu"
+                label="Submenu One"
+                oncommand="runSubMenu('one');" />
+      <menuitem id="menu_SecondSubmenu"
+                label="Submenu Two"
+                oncommand="runSubMenu('two');"/>
+      <menuitem id="menu_ThirdSubmenu"
+                label="Submenu Three"
+                oncommand="anotherAction();"/>
+    </menupopup>
+  </menu>
+
+</menupopup-->
+
+</overlay>

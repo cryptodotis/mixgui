@@ -1,0 +1,10 @@
+<!ENTITY  mixgui.menu  "MixGui">
+<!ENTITY  mixgui.preferences  "Preferences">
+<!ENTITY  mixgui.servers  "Servers">
+<!ENTITY  mixgui.queue  "Queue">
+<!ENTITY  mixgui.surbs  "Surbs">
+<!ENTITY  mixgui.surbsCreate  "Create">
+<!ENTITY  mixgui.surbsInspect  "Inspect">
+<!ENTITY  mixgui.logs  "Logs">
+<!ENTITY  mixgui.help  "Help">
+

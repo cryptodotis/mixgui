@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="surb.dialog"
+	description="Mixminion Servers"
+	title="Mixminion Servers"
+	width="300"
+	height="350"
+	onload="init()"
+	onunload="closeHandler()">
+
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixUtils.js" />
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixPreferences.js" />     
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixWrapper.js" />     
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixServers.js" />
+
+      <vbox id="boxMixPrefs" 
+	    debug="1"
+	    flex="1">
+	<hbox>
+
+	<button id="btnCleanQueue"
+		label="Refresh" 
+		toolbarmode="small"
+		class="toolbarbutton"
+		oncommand="btnRefreshHandler()"
+		min-width="80"/>	
+
+	</hbox>
+    
+      <hbox flex="1">
+        <spacer width="10px"/>
+        <browser id="queueView" disablehistory="true" disablesecurity="true" autofind="false" flex="1"/>
+        <spacer width="10px"/>
+      </hbox>	
+      </vbox>	
+
+<!-- read enigmail/ui/content/pref-enigmail.xul -->
+</dialog>

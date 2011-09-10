@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- Carico gli stili da utilizzare-->
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://messenger/skin/prefPanels.css"
+                 type="text/css"?>
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           buttons="accept, cancel"
+           title="Titolo della finestra"
+           id="smartsave-settings"
+           orient="vertical" flex="0"
+           persist="screenX screenY width height"
+           onload="init();"
+           ondialogaccept="onAcceptButton();">
+     <label value="Ciao, questa è la mia finestra !!" />
+</dialog>

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+
+<overlay id="sample" 
+xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="bundle_compose" src="chrome://gui/locale/composeOverlay.properties"/>
+  </stringbundleset>
+
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixUtils.js" />
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixWrapper.js" />
+<script type="application/x-javascript"
+     src="chrome://gui/content/composeOverlay.js" />
+
+
+<!--Overlay for buttons bar.-->
+<!-- Overlay for button bar in "compose window".-->
+<toolbar id="composeToolbar2">
+  <toolbarseparator >
+  </toolbarseparator>
+
+  <toolbarbutton id="btnMixSend" 		  
+		 label="Mixminion"
+		 insertafter="button-save"
+		 toolbarmode="small"
+		 image="chrome://gui/content/pemar_send.png"
+		 tooltiptext="Send anonimously this message over Mixminion network"
+		 type="menu-button"
+		 oncommand="btnMixSend(false);"
+		 class="toolbarbutton-1">
+    <menupopup>
+      <menuitem label="Send anonymous message"
+		disabled="false" default="true"
+		/>
+      <menuitem label="Inspect attached SURB"
+		id="miInspectSurb"
+		oncommand="btnInspect(); event.stopPropagation();"/>
+      <menuitem label="Reply with attached SURB" 
+		id="miAttachedReply"
+		oncommand="event.stopPropagation(); btnMixReply(true); "/>
+      <menuitem label="Reply with SURB" 
+		oncommand="event.stopPropagation(); btnMixReply(false); "/>
+    </menupopup>
+
+  </toolbarbutton>
+  <!--toolbarbutton id="btnMixSendReply"
+		 label="MixReply"
+                 oncommand="btnMixReply();"
+		 insertafter="button-save"
+		 toolbarmode="small"
+		 image="chrome://gui/content/pemar_reply.png"
+		 tooltiptext="Send this message as a reply to anonimous message over Mixminion network"
+		 visible="false"
+		 class="toolbarbutton-1"/-->
+  
+</toolbar>
+<vbox id="addresses-box">
+  <!--texbox id="surbPath1" flex="1"/-->
+  
+<hbox>
+  <grid align="bottom">
+    <columns>
+      <column flex="1"/>
+      <column flex="2"/>
+    </columns>
+    <rows>
+      <row align="center">
+	<label value="SURB path:"
+	       class="text-prompt"
+	       margin="5">
+	</label>
+	<textbox id="txtSurbPath"
+		 width="250"/>
+      </row>
+    </rows>
+  </grid>
+
+	<button id="Surb" 		  
+		label="Select"              
+		toolbarmode="small"
+		class="toolbarbutton"
+		oncommand="btnSelectSurbHandler()"
+		width="20"/>
+	</hbox>
+ </vbox>
+</overlay>

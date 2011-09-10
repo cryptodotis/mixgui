@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<?xul-overlay href="chrome://gui/content/surbDataOverlay.xul"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="pwd.dialog"
+	description="Mixminion passphrase"
+	title="Mixminion passphrase"
+	onload="init();"
+	ondialogaccept="return acceptHandler();"
+	width="400"
+	height="150">
+
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixPwdDialog.js" />
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixUtils.js" />
+
+  <vbox>
+    <textbox id="txtMsg"
+	     flex="0"
+	     multiline="true"
+	     readonly="true"
+	     class="plain"
+	     maxwidth="750px"
+	     maxheigth="500px"
+	     hidden="false"
+	     value="Insert the passphrase to unlock Mixminion secret key."/>
+    <grid>
+      <columns>
+	<column flex="0"/>
+	<column flex="1"/>
+      </columns>
+      <rows>
+	<row align="center">
+	  <label id="lblPwd" value="Passphrase:"/>
+	  <textbox id="txtPwd" 
+		   flex="1"
+		   type="password"/>
+	  
+	</row>
+	<row align="center">
+	</row>
+	
+      </rows>
+    </grid>
+    </vbox>
+<!--    	<splitter collapse="before" resizeafter="grow" persist="state"> -->
+<!-- 	  <grippy /> -->
+<!-- 	</splitter> -->
+
+
+<!-- read enigmail/ui/content/pref-enigmail.xul -->
+</dialog>

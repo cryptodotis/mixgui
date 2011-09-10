@@ -1,0 +1,8 @@
+content     gui    chrome/content/
+
+locale gui en-US chrome/locale/en-US
+locale gui en_AG chrome/locale/en_AG
+
+overlay chrome://messenger/content/messenger.xul chrome://gui/content/messengerOverlay.xul
+overlay chrome://messenger/content/messengercompose/messengercompose.xul chrome://gui/content/composeOverlay.xul
+overlay chrome://messenger/content/messageWindow.xul chrome://gui/content/messageWindowMixOverlay.xul

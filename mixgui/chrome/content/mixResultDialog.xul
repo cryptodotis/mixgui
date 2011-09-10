@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="surb.dialog"
+	description="Mix Send options"
+	title="Send options"
+	onload="init();"
+	width="620"
+	height="250">
+
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixResultDialog.js" />
+
+   <grid>
+    <columns>
+      <column flex="1"/>
+      <column flex="1"/>
+      <column flex="2"/>
+    </columns>
+    <rows>
+      <row align="center">
+	<label id="lblMainResultText" value=""/>
+	<button id="showDetails" 
+		label="Details."
+		oncommand="btnDetailsHandler()"
+		maxwidth="50"
+		flex="0"/>
+	<toolbarspring/>
+      </row>
+      <row align="center">
+      </row>
+      
+    </rows>
+   </grid>
+<!--    	<splitter collapse="before" resizeafter="grow" persist="state"> -->
+<!-- 	  <grippy /> -->
+<!-- 	</splitter> -->
+
+	<textbox id="txtMsg"
+		 flex="1"
+		 multiline="true"
+		 readonly="true"
+		 class="plain"
+		 minwidth="600px"
+		 maxwidth="750px"
+		 maxheigth="500px"
+		 hidden="true"
+		 value=""/>
+
+   <!-- read enigmail/ui/content/pref-enigmail.xul -->
+</dialog>

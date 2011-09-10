@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<!-- TODO: See https://developer.mozilla.org/en/XUL/grid -->
+
+<overlay id="sample" 
+xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="application/x-javascript"
+     src="chrome://gui/content/surbDataOverlay.js" />
+
+<vbox id="boxAddress">
+   <grid>
+    <columns>
+      <column flex="1"/>
+      <column flex="2"/>
+    </columns>
+    <rows>
+      <row align="center">
+        <label value="Reply To:"/>
+	<menulist id="txtReplyToAddress"
+		  width="100"
+		  editable="true"
+                  flex="1">
+          <menupopup id="addList">
+          </menupopup>
+        </menulist>
+      </row>
+<!--       <row align="center"> -->
+<!--         <label value="Secret key password:"/> -->
+<!-- 	<textbox id="txtPwd"  -->
+<!-- 		 flex="1" -->
+<!-- 		 type="password"/> -->
+<!--       </row> -->
+    </rows>
+  </grid>
+
+  <!-- Addressing Widget -->
+</vbox>
+
+</overlay>

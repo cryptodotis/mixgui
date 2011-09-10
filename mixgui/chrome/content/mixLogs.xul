@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="surb.dialog"
+	description="Mixgui Logs"
+	title="Mixgui Logs"
+	ondialogaccept="return acceptHandler();"
+	width="580"
+	height="400"
+	onload="init();">
+
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixLogs.js" />
+<script type="application/x-javascript"
+     src="chrome://gui/content/mixUtils.js" />
+
+      <vbox id="boxMixPrefs" 
+	    debug="1"
+	    flex="1">
+	<hbox>
+
+	<button id="btnClearLogs"
+		label="Clear Logs" 
+		toolbarmode="small"
+		class="toolbarbutton"
+		oncommand="btnClearLogsHandler()"
+		width="20"/>		
+	</hbox>
+    
+      <hbox flex="1">
+        <spacer width="10px"/>
+        <browser id="logView" disablehistory="true" disablesecurity="true" autofind="false" flex="1"/>
+        <spacer width="10px"/>
+      </hbox>	
+      </vbox>	
+
+<!-- read enigmail/ui/content/pref-enigmail.xul -->
+</dialog>
