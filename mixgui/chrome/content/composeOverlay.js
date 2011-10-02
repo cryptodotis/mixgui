@@ -40,11 +40,11 @@ function onLoadHandler(){
 		
 // 		break;
 // 	    }
-	    /*
+	    
 	    if(oCurrPar.originalMsgURI != null){
-		//		alert("param check: " + oCurrPar.originalMsgURI);
+		alert("param check: " + oCurrPar.originalMsgURI);
 		// look for an attacched surb in the original message.
-		const gMessenger = Components.classes["@mozilla.org/messenger;1"].createInstance(Components.interfaces.nsIMessenger);
+		const gMessenger = Components.classes["@mozilla.org/messenger;1"].createInstance(Components.interfaces.nsIMessenger);		
 		var msgHdr = gMessenger.messageServiceFromURI(oCurrPar.originalMsgURI).messageURIToMsgHdr(oCurrPar.originalMsgURI);
 		
 		var sBody = getMessageBodyFromHeader(msgHdr);
@@ -67,7 +67,7 @@ function onLoadHandler(){
 		    //		    btnMixSend.disabled = true;
 		}	       
 	    }
-	    */
+	    
 	}
     }
 }
@@ -197,7 +197,6 @@ function extractSurbToFile(){
 		    // the text does not contain any type 3 anonymous message.
 		    // do nothing.
 		    // miAttachedReply.setAttribute('disabled', 'true');
-		    alert("No SURB found.");
 		    return;
 
 		}else{
@@ -215,12 +214,20 @@ function extractSurbToFile(){
     }
 
 }
+/*
+  Handler for the "Inspect Surb menu item."
+*/
 function btnInspect(){
     extractSurbToFile();
     if(sSurbFilePath != null){
 	var oSurbParam = {surb:sSurbFilePath};
 	window.openDialog("chrome://gui/content/inspectSurb.xul", "Mixminion Surb inspection", 
-			  "modal, toolbar,location=yes, menubar=no,top=100, left=100px,width=100cm",oSurbParam);
+			  "modal, toolbar,location=yes, menubar=no,top=100, left=100px",
+			  oSurbParam);
+    }else{
+	alert("No SURB found.");
+	var miInspectSurb = document.getElementById("miInspectSurb");
+	miInspectSurb.setAttribute('disabled', 'true');	
     }
 }
 
@@ -238,7 +245,7 @@ function btnMixReply(bAttachedSurb){
     
     var sSurbPath;
     
-    // looking for a surb to be used to sedn the current message.
+    // looking for a surb to be used to send the current message.
     if(bAttachedSurb){
 	if(sSurbFilePath == null){
 	    // try to get a surb from the msg we are replying to.
@@ -262,7 +269,7 @@ function btnMixReply(bAttachedSurb){
     var asReplyBLocks;
     var oAddressParam = {in: null, out:null};
     window.openDialog("chrome://gui/content/sendOptions.xul", "Mixminion send options", 
-		      "modal, toolbar,location=yes, menubar=no,top=100, left=100px,width=100cm",oAddressParam);
+		      "modal, toolbar,location=yes, menubar=no,top=100, left=100px",oAddressParam);
 
     if(oAddressParam.out == null){
 	// No info for sending the message, do nothing. It is because the user 
@@ -369,7 +376,7 @@ function btnMixSend(bEnqueue){
     var asReplyBLocks;
     var oAddressParam = {in: null, out:null};
     window.openDialog("chrome://gui/content/sendOptions.xul", "Mixminion send options", 
-		      "modal, toolbar,location=yes, menubar=no,top=100, left=100px,width=100cm",oAddressParam);
+		      "modal, toolbar,location=yes, menubar=no,top=100, left=100px",oAddressParam);
 
     if(oAddressParam == null){
 	return;

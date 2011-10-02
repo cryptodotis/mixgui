@@ -50,17 +50,22 @@ function generateSurb(iSurbCount, sAddress, sPassword){
 */
 function runMixminion(asParameters, asPreInput, sMixInput){
         
-    var oMix = Components.classes['@mozilla.org/file/local;1'].createInstance(Components.interfaces.nsILocalFile);
+    var oMix = Components.classes['@mozilla.org/file/local;1'].
+	createInstance(Components.interfaces.nsILocalFile);
     // Mixminion complete path
     var sMixPath = getMixPathToPrefs();
+    oMix.initWithPath(sMixPath);
+
     if(pathExists(sMixPath) == false){
 	// file path in preferences is not a valid file path.
 	// open preferences
 
 	var bPrefsOk = showPrefs();
 	if(!bPrefsOk){
-	    alert("Mixminion path not set.");
-	    return;
+	    //	    alert("Mixminion path not set.");
+	    var oNoPathResult = {status: -1, message: "Mixminion path not set", error: "Mixminion path not set", 
+				 output: ""};		
+	    return oNoPathResult;
 	}
 	sMixPath = getMixPathToPrefs();
 
@@ -69,28 +74,31 @@ function runMixminion(asParameters, asPreInput, sMixInput){
 	// - cancel: return.
     }
 
-    // TODO: check if path  exists.
-//     oMix.initWithPath(sMixPath);
-//     var run = Components.classes['@mozilla.org/process/util;1'].createInstance(Components.interfaces.nsIProcess);
-//     run.init(oMix);
     
-    // TODO: make this call async and handle temp file deletion
-    // with an handler.
-    // Blocking sync call to mixminion    
-
     /*
       Inspired by pemar code.
      */
-    const NS_IPCSERVICE_CONTRACTID = "@mozilla.org/process/ipc-service;1";
-    var ipcService; 
-    ipcService = Components.classes[NS_IPCSERVICE_CONTRACTID].createInstance();
+    var ipcService;
+    ipcService = Components.classes["@mozilla.org/process/ipc-service;1"].getService();
+    ipcService = ipcService.QueryInterface(Components.interfaces.nsIIPCService);
+    try {
+     	
+    } catch (err) {
+	
+	ipcService = null;
+    }
+
+    // const NS_IPCSERVICE_CONTRACTID = "@mozilla.org/process/ipc-service;1";
+    // var ipcService; 
+    // ipcService = Components.classes[NS_IPCSERVICE_CONTRACTID].createInstance();
     if(ipcService == null){
 	writeLog("ERROR: ipcService instance could not be created.");
+	
     }
-    ipcService = ipcService.QueryInterface(Components.interfaces.nsIIPCService);
-    if(ipcService == null){
-	writeLog("ERROR: ipcService interface could not be queried.");
-    }
+    // ipcService = ipcService.QueryInterface(Components.interfaces.nsIIPCService);
+    // if(ipcService == null){
+    // 	writeLog("ERROR: ipcService interface could not be queried.");
+    // }
 
     var envList = []; 
     var preInput = asPreInput;
@@ -110,17 +118,42 @@ function runMixminion(asParameters, asPreInput, sMixInput){
 	var useShell = false;
 	// mixminion is executed in a blocking mode.
 	// TODO: run mixminion asyncrously and handle its termination.
-	exitCodeObj.value = ipcService.execPipe(command,
-						useShell,
-						preInput,
-						sInput, 0,
-						envList, envList.length,
-						outObj, outLenObj,
-						errObj, errLenObj);
+
+	//  adapt to the new runPipe signature.
+
+	 // long runPipe (in nsIFile executable,
+         //        [array, size_is(argCount)] in string args,
+         //        in unsigned long argCount,
+         //        in string preInput,
+         //        in string inputData,
+         //        in unsigned long inputLength,
+         //        [array, size_is(envCount)] in string env,
+         //        in unsigned long envCount,
+         //        [size_is(outputCount)] out string outputData,
+         //        out unsigned long outputCount,
+         //        [size_is(errorCount)] out string outputError,
+         //        out unsigned long errorCount);
+	exitCodeObj.value = ipcService.runPipe(oMix,	
+					       asParameters,
+					       asParameters.length,
+					       preInput,
+					       sInput, 0,
+					       envList, envList.length,
+					       outObj, outLenObj,
+					       errObj, errLenObj);
+
+	// exitCodeObj.value = ipcService.runPipe(command,
+	// 					useShell,
+	// 					preInput,
+	// 					sInput, 0,
+	// 					envList, envList.length,
+	// 					outObj, outLenObj,
+	// 					errObj, errLenObj);
     } catch (ex) {
 	exitCodeObj.value = -1;	
 	writeLog("An exception has been thrown during mixminion execution.\nError code: " + exitCodeObj.value); 
 	writeLog(" Command " + command);
+	writeLog(" error ");
     }
     var oResult = {status: -1, message: "", error: "", output: ""};
     oResult.output = outObj.value;
@@ -266,14 +299,24 @@ function getMixQueue(){
 
 */
 function getMixServers(){
-    
+
+    /*
+    var sCompList = "";
+    for(oComp in Components.classes){
+	sCompList += oComp + "\n";
+    }
+    return getTempFilePath(sCompList);
+    */
     var asParameters = buildMixListServersParams();
     var oResult = runMixminion(asParameters, [], []);
     if(oResult.status != 0){
 	window.openDialog("chrome://gui/content/mixResultDialog.xul", "",
 			  "chrome,centerscreen,modal",
-			  {mainText: "Unable to get servers list.\nSee logs for details.", detailText: oResult.message});
+			  {mainText: "Unable to get servers list. \nSee logs for details.", 
+				  detailText: oResult.message});
     }
+    
+
     var oTmpFile = getTempFilePath(oResult.message);
 
     return oTmpFile;

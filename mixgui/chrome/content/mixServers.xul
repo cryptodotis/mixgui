@@ -27,7 +27,7 @@
 	    flex="1">
 	<hbox>
 
-	<button id="btnCleanQueue"
+	<button id="btnRefreshList"
 		label="Refresh" 
 		toolbarmode="small"
 		class="toolbarbutton"
@@ -38,7 +38,7 @@
     
       <hbox flex="1">
         <spacer width="10px"/>
-        <browser id="queueView" disablehistory="true" disablesecurity="true" autofind="false" flex="1"/>
+        <browser id="srvsView" disablehistory="true" disablesecurity="true" autofind="false" flex="1"/>
         <spacer width="10px"/>
       </hbox>	
       </vbox>	

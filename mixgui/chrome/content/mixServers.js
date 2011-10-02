@@ -11,14 +11,18 @@ function init(){
 }
 
 function closeHandler(){
-    removeFile(goTmpFile.path);
+    if(goTmpFile){
+	removeFile(goTmpFile.path);
+    }
 }
 
 function showServers(){
+	
+    var oSrvsView = window.document.getElementById("srvsView");
 
-    var oQueueView = window.document.getElementById("queueView");
+    
     // for security, disable JS
-    oQueueView.docShell.allowJavascript = false; 
+    oSrvsView.docShell.allowJavascript = false; 
 
     // get queue content
     
@@ -32,7 +36,7 @@ function showServers(){
     // convert the file to a URL so we can load it.
     ioService = Components.classes["@mozilla.org/network/io-service;1"]
                   .getService(Components.interfaces.nsIIOService);
-    oQueueView.setAttribute("src", ioService.newFileURI(goTmpFile).spec);
+    oSrvsView.setAttribute("src", ioService.newFileURI(goTmpFile).spec);
     
 }
 
