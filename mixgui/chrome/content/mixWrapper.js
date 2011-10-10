@@ -81,12 +81,6 @@ function runMixminion(asParameters, asPreInput, sMixInput){
     var ipcService;
     ipcService = Components.classes["@mozilla.org/process/ipc-service;1"].getService();
     ipcService = ipcService.QueryInterface(Components.interfaces.nsIIPCService);
-    try {
-     	
-    } catch (err) {
-	
-	ipcService = null;
-    }
 
     // const NS_IPCSERVICE_CONTRACTID = "@mozilla.org/process/ipc-service;1";
     // var ipcService; 
@@ -211,8 +205,8 @@ function buildMixDecodeParams(sReplyPath){
   iSurbCount: int, how many surbs will be generated.
 */
 function buildMixSurbParams(sAddress, iSurbCount){
-    var sSurbCount = "-n " + iSurbCount;
-    var sAddrParam = "-t " + sAddress;
+    var sSurbCount = "--count=" + iSurbCount;
+    var sAddrParam = "--to=" + sAddress ;
     
     var asParameters = ["generate-surbs", sSurbCount, sAddrParam];
     

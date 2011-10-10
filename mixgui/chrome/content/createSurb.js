@@ -34,7 +34,7 @@ function acceptHandler(){
     // build params.
     var asParameters = buildMixSurbParams(sAddress,sSurbCount);
     // adding out parameter so that surbs will be written to choosen file.
-    asParameters[asParameters.length] = ("-o " + sSurbPath);
+    asParameters[asParameters.length] = ("--output=" + sSurbPath);
     
     var oResult = runMixminion(asParameters, sPwd, []);
     if(oResult.status != 0){
