@@ -42,7 +42,7 @@ function onLoadHandler(){
 // 	    }
 	    
 	    if(oCurrPar.originalMsgURI != null){
-		alert("param check: " + oCurrPar.originalMsgURI);
+		//		alert("param check: " + oCurrPar.originalMsgURI);
 		// look for an attacched surb in the original message.
 		const gMessenger = Components.classes["@mozilla.org/messenger;1"].createInstance(Components.interfaces.nsIMessenger);		
 		var msgHdr = gMessenger.messageServiceFromURI(oCurrPar.originalMsgURI).messageURIToMsgHdr(oCurrPar.originalMsgURI);
@@ -376,7 +376,7 @@ function btnMixSend(bEnqueue){
     var asReplyBLocks;
     var oAddressParam = {in: null, out:null};
     window.openDialog("chrome://gui/content/sendOptions.xul", "Mixminion send options", 
-		      "modal, toolbar,location=yes, menubar=no,top=100, left=100px",oAddressParam);
+		      "modal, toolbar,location=yes, menubar=no,top=100,",oAddressParam);
 
     if(oAddressParam == null){
 	return;

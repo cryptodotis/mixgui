@@ -997,7 +997,7 @@ function surbsToGlobalFile(asSurb, goSurbFilea){
 function getPwd(){
     var oPwdParam = {in: null, out:null};
     window.openDialog("chrome://gui/content/mixPwdDialog.xul", "Passphrase", 
-		      "modal, toolbar,location=yes, menubar=no,top=100, left=100px,width=100cm",oPwdParam);
+		      "modal, toolbar,location=yes, menubar=no,top=100",oPwdParam);
     if(oPwdParam == null){
 	return null;
     }
